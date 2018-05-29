@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using labb_4_mvc.Models;
+using labb_4_mvc.Models.Quiz;
 
 namespace labb_4_mvc.Data
 {
@@ -14,6 +15,9 @@ namespace labb_4_mvc.Data
             : base(options)
         {
         }
+
+        public DbSet<HighScore> HighScores { get; set; }
+        public DbSet<Questions> Questions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
