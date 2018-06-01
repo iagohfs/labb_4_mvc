@@ -11,9 +11,10 @@ using System;
 namespace labb_4_mvc.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180601083721_changing-database")]
+    partial class changingdatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,23 +72,7 @@ namespace labb_4_mvc.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("labb_4_mvc.Models.Quiz.AnonymousScore", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Points");
-
-                    b.Property<int?>("QuestionId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("AnonymousScores");
-                });
-
-            modelBuilder.Entity("labb_4_mvc.Models.Quiz.AnswerChoices", b =>
+            modelBuilder.Entity("labb_4_mvc.Models.Quiz.Answers", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -96,7 +81,7 @@ namespace labb_4_mvc.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AnswerChoices");
+                    b.ToTable("Answers");
                 });
 
             modelBuilder.Entity("labb_4_mvc.Models.Quiz.Questions", b =>
@@ -124,15 +109,11 @@ namespace labb_4_mvc.Data.Migrations
 
                     b.Property<int>("Points");
 
-                    b.Property<int?>("QuestionId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("QuestionId");
-
-                    b.ToTable("UserScores");
+                    b.ToTable("HighScores");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -243,16 +224,9 @@ namespace labb_4_mvc.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("labb_4_mvc.Models.Quiz.AnonymousScore", b =>
-                {
-                    b.HasOne("labb_4_mvc.Models.Quiz.Questions", "Question")
-                        .WithMany()
-                        .HasForeignKey("QuestionId");
-                });
-
             modelBuilder.Entity("labb_4_mvc.Models.Quiz.Questions", b =>
                 {
-                    b.HasOne("labb_4_mvc.Models.Quiz.AnswerChoices", "CorrectAnswer")
+                    b.HasOne("labb_4_mvc.Models.Quiz.Answers", "CorrectAnswer")
                         .WithMany()
                         .HasForeignKey("CorrectAnswerId");
                 });
@@ -262,10 +236,6 @@ namespace labb_4_mvc.Data.Migrations
                     b.HasOne("labb_4_mvc.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("labb_4_mvc.Models.Quiz.Questions", "Question")
-                        .WithMany()
-                        .HasForeignKey("QuestionId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

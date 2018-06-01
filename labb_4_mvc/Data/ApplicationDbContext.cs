@@ -11,13 +11,13 @@ namespace labb_4_mvc.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<HighScore> HighScores { get; set; }
+
+        public DbSet<AnonymousScore> AnonymousScores { get; set; }
+        public DbSet<AnswerChoices> AnswerChoices { get; set; }
         public DbSet<Questions> Questions { get; set; }
+        public DbSet<UserScore> UserScores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace labb_4_mvc.Models.Quiz
 {
-    public class Questions
+    public class AnswerChoices
     {
         [Key]
         public int Id { get; set; }
 
-        public string Question { get; set; }
-
-        public AnswerChoices CorrectAnswer { get; set; }
-
+        public string Answer { get; set; }
     }
 }
